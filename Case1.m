@@ -1,13 +1,12 @@
-%Erdem Rencbereli 2378636 - Seyit Hasan Yaprak 2445146
+%Erdem Rencbereli
 clear
 clc
 
-T = 25; %Grid size, a square grid of size 25
+T = 25; %Grid size, a square grid
 grid = zeros(T,T);
 
-N = 400; %population = N; [120,500]
+N = 400; %population = N; %Can take values in the interval [120,500]
 delta_1 = 10/100;  %percentage of infected people initially - [1% - 15%]
-                   %Randomly distributing n-many healthy people into the determined grid.
 index_person = 0; %Starting from the first person
 p = 0.4; %infection probability in scenario of encounter [0.1 0.7]
 delta_2 = 100/100; %percentage of isolated infected people at the initialization [0% 100%]
@@ -15,7 +14,6 @@ q_s = 0.5; %isolation probability of a newly infected person
 capital_m = 10; %infectious period duration (in number of iterations) [10,50]
 p_healing = 0.95; %each infected point will be healed with a 0.95 probability after M 
                   %iterations of infectious period.
-p_death = 1 - p_healing; 
 death_people_count = 0; %Dead people at the beginning
 
 while index_person < N
@@ -28,7 +26,7 @@ while index_person < N
     end
 end
 
-%Now we infect the delta_1% of those N-many people distributed randomly.
+%Now we infect the (delta_1)% of those N-many people distributed randomly.
 index_infected = 0;
 while index_infected < delta_1*N
     rand_infect_x = randi(25); rand_infect_y = randi(25);
@@ -194,6 +192,7 @@ dead_people_iterations(2,:) = cumulative_dead;
 %meaning that 1+3k, 2+3k, 3+3k with a given integer for the requested
 %iteration gives us situation, x and y coordinates respectively.
 
+%After that point, we will interpret the results using visual representations.
 for plot_iterations = 1:x
     plot1(plot_iterations) = infected_people_iterations(1,plot_iterations);
     plot2(plot_iterations) = infected_people_iterations(2,plot_iterations);
